@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+   
+    // 1. Length Calculation
+
+    char brand[] = "Lenovo";
+    int len = 0;
+    while (brand[len] != '\0') len++;
+    printf("1. Length of 'Lenovo': %d\n", len);
+
+    // 2. Concatenation
+
+    char brand1[20] = "Dell", brand2[] = "HP";
+    strcat(brand1, brand2);
+    printf("2. Concatenated brand1 and brand2: %s\n", brand1);
+
+    // 3. Character Access
+
+    char asus[] = "Asus";
+    printf("3. Third character of 'Asus': %c\n", asus[2]);
+
+    // 4. Traversal
+
+    char apple[] = "Apple";
+    printf("4. Characters in 'Apple':\n");
+    for (int i = 0; apple[i] != '\0'; i++)
+        printf("%c\n", apple[i]);
+
+    // 5. Uppercase Conversion
+
+    char acer[] = "acer";
+    for (int i = 0; acer[i] != '\0'; i++)
+        if (acer[i] >= 'a' && acer[i] <= 'z') acer[i] -= 32;
+    printf("5. Uppercase 'acer': %s\n", acer);
+
+    // 6. Reverse a Brand Name
+
+    char msi[] = "MSI";
+    int n = strlen(msi);
+    printf("6. Reverse of 'MSI': ");
+    for (int i = n - 1; i >= 0; i--) printf("%c", msi[i]);
+    printf("\n");
+
+    // 7. Substring Search
+
+    char sentence[] = "Popular brands are Dell, HP, and Lenovo";
+    if (strstr(sentence, "Dell"))
+        printf("7. 'Dell' found in sentence\n");
+    else
+        printf("7. 'Dell' not found\n");
+
+    // 8. Count Occurrence
+
+    char list[] = "HP, HP, Lenovo, Dell";
+    int count = 0;
+    char *ptr = list;
+    while ((ptr = strstr(ptr, "HP")) != NULL) {
+        count++;
+        ptr += 2;
+    }
+    printf("8. Occurrences of 'HP': %d\n", count);
+
+    // 9. Sorting
+
+    char brands[4][20] = {"Lenovo", "Dell", "HP", "Asus"}, temp[20];
+    for (int i = 0; i < 4; i++)
+        for (int j = i + 1; j < 4; j++)
+            if (strcmp(brands[i], brands[j]) > 0) {
+                strcpy(temp, brands[i]);
+                strcpy(brands[i], brands[j]);
+                strcpy(brands[j], temp);
+            }
+    printf("9. Sorted brands:\n");
+    for (int i = 0; i < 4; i++) printf("%s\n", brands[i]);
+
+    // 10. Replace Brand Name
+
+    char line[] = "Apple is a premium brand";
+    char *pos = strstr(line, "Apple");
+    if (pos) {
+        char result[100];
+        int idx = pos - line;
+        strncpy(result, line, idx);
+        result[idx] = '\0';
+        strcat(result, "MSI");
+        strcat(result, pos + 5);
+        printf("10. After replacing 'Apple': %s\n", result);
+    }
+}
